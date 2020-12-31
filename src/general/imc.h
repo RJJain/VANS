@@ -21,9 +21,9 @@ class imc_controller : public memory_controller<vans::base_request, vans::static
 
     explicit imc_controller(const vans::config &cfg) :
         memory_controller(cfg),
-        wpq(cfg.get_value("wpq_entries")),
-        rpq(cfg.get_value(("rpq_entries"))),
-        adr_epoch(cfg.get_value("adr_epoch"))
+        wpq(cfg.get_ulong("wpq_entries")),
+        rpq(cfg.get_ulong(("rpq_entries"))),
+        adr_epoch(cfg.get_ulong("adr_epoch"))
     {
     }
 
@@ -41,7 +41,7 @@ class imc_controller : public memory_controller<vans::base_request, vans::static
 
     /* imc_controller::full()
      *   This function returns true if both wpq and rpq are full.
-     *   You should check the first return value of `imc_controller::issue_request` to test if wpq or rpq is full.
+     *   You should check the first return value of `imc_controller::issue_request` to test if either wpq/rpq is full.
      */
     bool full() final
     {
